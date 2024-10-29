@@ -1,5 +1,8 @@
-const { Router } = require("express");
+const express = require("express");
+const listRoute = express.Router();
+const { create, task } = require("../controllers/list")
 
-const { User, Task, Todo } = require("../db/db");
+listRoute.post("/create", create);
+listRoute.post("/:listid/task", create);
 
-const listRoute = Router();
+module.exports = listRoute;

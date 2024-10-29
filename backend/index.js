@@ -15,10 +15,10 @@ mongoose.connect(process.env.MONGO_URL)
     });
 
 const userRoute = require("./routes/user");
-// const listRoute = require("./routes/list");
+const listRoute = require("./routes/list");
 
 app.use("/user", userRoute);
-// app.use("/list", listRoute);
 
+app.use("/list", listRoute);
 
 app.listen(port, () => console.log(`Listening to port: ${port}`));

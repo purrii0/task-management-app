@@ -1,5 +1,5 @@
 const { registrationSchema, loginSchema } = require("../zod/types");
-const User = require("../db/db");
+const { User } = require("../db/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -55,6 +55,7 @@ const signin = async (req, res) => {
 
     } catch (error) {
         res.status(400).json({ message: "Something went Wrong" })
+        console.log(error)
     }
 }
 
