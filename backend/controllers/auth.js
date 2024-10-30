@@ -1,4 +1,4 @@
-const { registrationSchema, loginSchema } = require("../zod/types");
+const { registrationSchema, loginSchema } = require("../zod/validation");
 const { User } = require("../db/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");

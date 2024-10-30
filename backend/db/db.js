@@ -22,6 +22,7 @@ const TaskSchema = new Schema({
     subtasks: [{ title: String, completed: { type: Boolean, default: false } }],
     assignedBy: { type: ObjectId, ref: "users", required: true },
     assignedTo: { type: ObjectId, ref: "users" },
+    listid: { type: ObjectId, ref: "todos" }
 });
 
 const TodoSchema = new Schema({
