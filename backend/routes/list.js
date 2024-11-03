@@ -1,7 +1,7 @@
 const express = require("express");
 const listRoute = express.Router();
 const { create, task, update, deleteTask, addCollabrator, deleteCollabrator } = require("../controllers/list")
-const auth = require("../auth/auth")
+const auth = require("../auth/protectRoute")
 
 listRoute.post("/create", auth, create);
 listRoute.post("/:listid/task", auth, task);

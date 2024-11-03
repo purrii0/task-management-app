@@ -11,6 +11,7 @@ const create = async (req, res) => {
             owner: id,
             title
         })
+
         return res.status(201).json({
             message: "To-do list successfully created", todo
         })

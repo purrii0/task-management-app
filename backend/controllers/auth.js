@@ -9,7 +9,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const signup = async (req, res) => {
     try {
-        console.log(req.body);
         const parsedData = registrationSchema.parse(req.body);
         const { name, username, email, password, profilePicture } = parsedData;
 
@@ -22,18 +21,19 @@ const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        await User.create({
+        const newUser = await User.create({
             username,
             name,
             email,
             password: hashedPassword,
             profilePicture
         })
-
-        res.status(200).json({ message: "User created successfully" })
+        const userWithoutPassword = newUser.toObject();
+        delete userWithoutPassword.password;
+        res.status(201).json({ message: "User created successfully", user: userWithoutPassword })
     } catch (error) {
+        console.log(error.message)
         res.status(400).json({ message: "Something went Wrong" })
-        console.log(error)
     }
 }
 
@@ -54,8 +54,8 @@ const signin = async (req, res) => {
         res.status(200).json({ token })
 
     } catch (error) {
+        console.log(error.message)
         res.status(400).json({ message: "Something went Wrong" })
-        console.log(error)
     }
 }
 
