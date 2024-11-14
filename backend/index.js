@@ -3,16 +3,20 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
 const port = 3000;
 
-mongoose.connect(process.env.MONGO_URL)
-    .then(() => {
-        console.log("Connected To Database");
-    })
-    .catch((e) => {
-        console.log(`Error Connecting to Database Err: ${e}`);
-    });
+const cors = require("cors");
+app.use(cors());
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("Connected To Database");
+  })
+  .catch((e) => {
+    console.log(`Error Connecting to Database Err: ${e}`);
+  });
 
 const userRoute = require("./routes/user");
 const listRoute = require("./routes/list");
