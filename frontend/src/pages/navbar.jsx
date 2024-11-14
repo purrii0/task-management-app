@@ -18,7 +18,11 @@ function Navbar() {
           </ul>
         </div>
         <div className="button">
-          <button className="btn">Join</button>
+          <button className="btn">
+            <Link to="/signup" className="link">
+              Join
+            </Link>
+          </button>
         </div>
       </div>
     </>
